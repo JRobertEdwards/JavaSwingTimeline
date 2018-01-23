@@ -1,0 +1,163 @@
+/*
+ * 
+ */
+package Model;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Game.
+ */
+public class Game {
+	
+	/** The game platform. */
+	String gamePlatform;
+	
+	/** The game title. */
+	String gameTitle;
+	
+	/** The number sold. */
+	int numberSold;
+	
+	/** The release year. */
+	int releaseYear;
+	
+	/** The game creator. */
+	String gameCreator;
+	
+	/** The game notes. */
+	String gameNotes;
+	
+	/**
+	 * Instantiates a new game.
+	 *
+	 * @param platform the platform
+	 * @param title the title
+	 * @param gameNoSold the game no sold
+	 * @param gameReleaseYear the game release year
+	 * @param creator the creator
+	 * @param notes the notes
+	 */
+	public Game(String platform, String title, int gameNoSold, int gameReleaseYear, String creator, String notes) {
+		gamePlatform = platform;
+		gameTitle = title;
+		numberSold = gameNoSold;
+		releaseYear = gameReleaseYear;
+		gameCreator = creator;
+		gameNotes = notes;
+	}
+	
+	/**
+	 * Gets the game notes.
+	 *
+	 * @return the game notes
+	 */
+	public String getGameNotes() {
+		return gameNotes;
+	}
+	
+	/**
+	 * Sets the game notes.
+	 *
+	 * @param gameNotes the new game notes
+	 */
+	public void setGameNotes(String gameNotes) {
+		this.gameNotes = gameNotes;
+	}
+	
+	/**
+	 * Instantiates a new game.
+	 */
+	public Game() {
+		this("", "", 0,0,"", "");
+	}
+	
+	/**
+	 * Gets the game creator.
+	 *
+	 * @return the game creator
+	 */
+	public String getGameCreator() {
+		return gameCreator;
+	}
+	
+	/**
+	 * Sets the game creator.
+	 *
+	 * @param gameCreator the new game creator
+	 */
+	public void setGameCreator(String gameCreator) {
+		this.gameCreator = gameCreator;
+	}
+	
+	/**
+	 * Gets the platform.
+	 *
+	 * @return the platform
+	 */
+	public String getPlatform() {
+		return gamePlatform;
+	}
+	
+	/**
+	 * Sets the platform.
+	 *
+	 * @param platform the new platform
+	 */
+	public void setPlatform(String platform) {
+		this.gamePlatform = platform;
+	}
+	
+	/**
+	 * Gets the game title.
+	 *
+	 * @return the game title
+	 */
+	public String getGameTitle() {
+		return gameTitle;
+	}
+	
+	/**
+	 * Sets the game title.
+	 *
+	 * @param ganeTitle the new game title
+	 */
+	public void setGameTitle(String ganeTitle) {
+		this.gameTitle = ganeTitle;
+	}
+	
+	/**
+	 * Gets the game numbers sold.
+	 *
+	 * @return the game numbers sold
+	 */
+	public int getGameNumbersSold() {
+		return   numberSold;
+	}
+	
+	/**
+	 * Sets the game numbers sold.
+	 *
+	 * @param gameNumbersSold the new game numbers sold
+	 */
+	public void setGameNumbersSold(int gameNumbersSold) {
+		this.numberSold = gameNumbersSold;
+	}
+	
+	/**
+	 * Gets the game release year.
+	 *
+	 * @return the game release year
+	 */
+	public int getGameReleaseYear() {
+		return releaseYear;
+	}
+	
+	/**
+	 * Sets the game release year.
+	 *
+	 * @param gameReleaseYear the new game release year
+	 */
+	public void setGameReleaseYear(int gameReleaseYear) {
+		this.releaseYear = gameReleaseYear;
+	}
+}
