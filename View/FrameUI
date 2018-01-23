@@ -1,0 +1,405 @@
+/*
+ * 
+ */
+package View;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
+
+import com.google.gson.Gson;
+
+import Model.Creator;
+import Model.Game;
+import Service.GameFactory;
+import Service.JSONService;
+
+import java.awt.GridLayout;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextPane;
+import java.awt.Font;
+import javax.swing.JProgressBar;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FrameUI.
+ */
+public class FrameUI extends JFrame {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The content pane. */
+	private JPanel contentPane;
+
+	/** The game name field. */
+	private JTextField gameNameField;
+
+	/** The game release year field. */
+	private JTextField gameReleaseYearField;
+
+	/** The game numbers sold field. */
+	private JTextField gameNumbersSoldField;
+
+	/** The result name label. */
+	private static JTextArea resultNameLabel;
+
+	/** The result platform label. */
+	private static JTextArea resultPlatformLabel;
+
+	/** The result release year. */
+	private static JTextArea resultReleaseYear;
+
+	/** The result number sold. */
+	private static JTextArea resultNumberSold;
+
+	/** The result notes label. */
+	private static JTextArea resultNotesLabel;
+
+	/** The result creator label. */
+	private static JTextArea resultCreatorLabel;
+
+	/** The array count. */
+	private JLabel arrayCount;
+
+	/** The game list. */
+	private static JComboBox gameList;
+
+	/** The creators list. */
+	private static JComboBox creatorsList;
+
+	/** The new creators. */
+	public ArrayList<Creator> newCreators = new ArrayList<Creator>();
+
+	/** The games. */
+	public ArrayList<Game> games = new ArrayList<Game>();
+
+	/** The current index. */
+	private int currentIndex = 0;
+
+	/** The notes field. */
+	private JTextField notesField;
+
+	/** The new creator field. */
+	private JTextField newCreatorField;
+
+	/**
+	 * Create the frame.
+	 *
+	 * @param title
+	 *            the title
+	 * @param games
+	 *            the games
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public FrameUI(String title, ArrayList<Game> games) {
+		super(title);
+		this.games = games;
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, -25, 652, 645);
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		JMenu mnNewMenu = new JMenu("Timeline");
+		menuBar.add(mnNewMenu);
+		JMenuItem mntmNewMenuItem = new JMenuItem("Open Timeline");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Timeline frame = new Timeline();
+					frame.setLocationRelativeTo(null);
+					frame.pack();
+					frame.setVisible(true);
+				} catch (Exception j) {
+					j.printStackTrace();
+				}
+			}
+		});
+
+		mnNewMenu.add(mntmNewMenuItem);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		gameNameField = new JTextField();
+		gameNameField.setBounds(189, 73, 102, 20);
+		contentPane.add(gameNameField);
+		gameNameField.setColumns(10);
+
+		gameReleaseYearField = new JTextField();
+		gameReleaseYearField.setBounds(189, 99, 102, 20);
+		contentPane.add(gameReleaseYearField);
+		gameReleaseYearField.setColumns(10);
+
+		gameNumbersSoldField = new JTextField();
+		gameNumbersSoldField.setBounds(189, 130, 102, 20);
+		contentPane.add(gameNumbersSoldField);
+		gameNumbersSoldField.setColumns(10);
+
+		JComboBox gameList = new JComboBox();
+		gameList.setModel(
+				new DefaultComboBoxModel(new String[] { "SNES", "N64", "GameCube", "Wii", "WiiU", "Switch" }));
+		gameList.setBounds(189, 42, 102, 20);
+		contentPane.add(gameList);
+
+		JComboBox creatorsList = new JComboBox();
+		creatorsList.setModel(new DefaultComboBoxModel(new String[] { "Shigeru Miyamoto", "Satoshi Tajiri",
+				"Yoshiaki Koizumi", "Koichi Hayashida", "Koji Kondo", "Hiroshi Yamauchi" }));
+		creatorsList.setBounds(384, 42, 194, 20);
+		contentPane.add(creatorsList);
+
+		JLabel lblNewLabel = new JLabel("Platform:");
+		lblNewLabel.setBounds(121, 45, 78, 14);
+		contentPane.add(lblNewLabel);
+
+		JLabel lblGameTitle = new JLabel("Game Title:");
+		lblGameTitle.setBounds(110, 76, 89, 14);
+		contentPane.add(lblGameTitle);
+
+		JLabel lblReleaseYear = new JLabel("Release Year:");
+		lblReleaseYear.setHorizontalAlignment(SwingConstants.LEFT);
+		lblReleaseYear.setBounds(100, 100, 89, 14);
+		contentPane.add(lblReleaseYear);
+		JLabel lblNumberSold = new JLabel("Number Sold:");
+		lblNumberSold.setBounds(100, 131, 89, 14);
+		contentPane.add(lblNumberSold);
+		resultNameLabel = new JTextArea("Game Title");
+		resultNameLabel.setBounds(136, 264, 260, 20);
+		contentPane.add(resultNameLabel);
+		resultPlatformLabel = new JTextArea("Platform");
+		resultPlatformLabel.setBounds(136, 281, 260, 20);
+		contentPane.add(resultPlatformLabel);
+		resultReleaseYear = new JTextArea("Release Year");
+		resultReleaseYear.setBounds(136, 298, 260, 20);
+		contentPane.add(resultReleaseYear);
+		resultNumberSold = new JTextArea("Numbers Sold");
+		resultNumberSold.setBounds(136, 315, 260, 20);
+		contentPane.add(resultNumberSold);
+		JLabel lblNewLabel_1 = new JLabel("Creator:");
+		lblNewLabel_1.setBounds(321, 45, 61, 14);
+		contentPane.add(lblNewLabel_1);
+		JButton addGameButton = new JButton("Add to Timeline and update file");
+		addGameButton.setBounds(199, 189, 260, 23);
+		contentPane.add(addGameButton);
+		resultCreatorLabel = new JTextArea("Creator");
+		resultCreatorLabel.setWrapStyleWord(true);
+		resultCreatorLabel.setBounds(136, 333, 261, 20);
+		contentPane.add(resultCreatorLabel);
+		resultNotesLabel = new JTextArea("Notes");
+		resultNotesLabel.setWrapStyleWord(true);
+		resultNotesLabel.setLineWrap(true);
+		resultNotesLabel.setBounds(63, 404, 515, 78);
+		contentPane.add(resultNotesLabel);
+		arrayCount = new JLabel("Array Count");
+		arrayCount.setBounds(136, 369, 340, 20);
+		contentPane.add(arrayCount);
+		arrayCount.setText("Array Size: " + games.size() + " - Current index: " + String.valueOf(currentIndex + 1));
+		getObjectDetails(this.games.get(0));
+
+		JButton nextGameButton = new JButton("Next >");
+		nextGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Move through array
+				currentIndex++;
+				if (currentIndex == games.size()) {
+					currentIndex = games.size() - 1;
+					nextGameButton.setEnabled(false);
+				}
+				gameNameField.setText("");
+				gameNumbersSoldField.setText("");
+				gameReleaseYearField.setText("");
+				arrayCount.setText(String.valueOf(currentIndex));
+				arrayCount.setText(
+						"Array Size: " + games.size() + " - Current index: " + String.valueOf(currentIndex + 1));
+				getObjectDetails(games.get(currentIndex));
+			}
+		});
+		JButton prevGameButton = new JButton("< Previous");
+		prevGameButton.setBounds(233, 493, 89, 23);
+		contentPane.add(prevGameButton);
+		prevGameButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				currentIndex--;
+				if (currentIndex <= 0) {
+					currentIndex = 0;
+				}
+				nextGameButton.setEnabled(true);
+				gameNameField.setText("");
+				gameNumbersSoldField.setText("");
+				gameReleaseYearField.setText("");
+				arrayCount.setText(
+						"Array Size: " + games.size() + " - Current index: " + String.valueOf(currentIndex + 1));
+				getObjectDetails(games.get(currentIndex));
+			}
+		});
+		nextGameButton.setBounds(341, 493, 89, 23);
+		contentPane.add(nextGameButton);
+
+		notesField = new JTextField();
+		notesField.setBounds(189, 161, 389, 17);
+		contentPane.add(notesField);
+		notesField.setColumns(10);
+
+		JLabel notesLabel = new JLabel("Notes:");
+		notesLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		notesLabel.setVerticalAlignment(SwingConstants.TOP);
+		notesLabel.setBounds(126, 164, 46, 14);
+		contentPane.add(notesLabel);
+
+		newCreatorField = new JTextField();
+		newCreatorField.setHorizontalAlignment(SwingConstants.LEFT);
+		newCreatorField.setBounds(384, 99, 194, 20);
+		contentPane.add(newCreatorField);
+		newCreatorField.setColumns(10);
+
+		JButton addNewCreatorButton = new JButton("Add new creator");
+		addNewCreatorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String creator = newCreatorField.getText();
+				creatorsList.addItem(creator);
+				newCreatorField.setText("");
+			}
+		});
+		addNewCreatorButton.setBounds(384, 128, 194, 23);
+		contentPane.add(addNewCreatorButton);
+
+		JButton deleteCreatorButton = new JButton("Delete selected Creator");
+		deleteCreatorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String selected = (String) creatorsList.getSelectedItem();
+				creatorsList.removeItem(selected);
+			}
+		});
+		deleteCreatorButton.setBounds(384, 67, 194, 23);
+		contentPane.add(deleteCreatorButton);
+
+		JLabel gameCreateDescription = new JLabel("Add details for the game you want to add:");
+		gameCreateDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		gameCreateDescription.setHorizontalAlignment(SwingConstants.CENTER);
+		gameCreateDescription.setBounds(37, 11, 383, 20);
+		contentPane.add(gameCreateDescription);
+
+		JLabel currentEventsDescription = new JLabel("Current events in Timeline:");
+		currentEventsDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		currentEventsDescription.setBounds(90, 211, 180, 42);
+		contentPane.add(currentEventsDescription);
+
+		JButton removeItemFromArrayButton = new JButton("Remove Item from Array");
+		removeItemFromArrayButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				games.remove(currentIndex);
+				String jsonFromArray = new Gson().toJson(games);
+				JSONService append = new JSONService();
+				append.AppendToJSON(jsonFromArray);
+				currentIndex--;
+				arrayCount.setText(
+						"Array Size: " + games.size() + " - Current index: " + String.valueOf(currentIndex + 1));
+				getObjectDetails(games.get(currentIndex));
+
+			}
+		});
+		removeItemFromArrayButton.setBounds(406, 299, 172, 23);
+		contentPane.add(removeItemFromArrayButton);
+
+		JLabel lblNewCreator = new JLabel("New Creator:");
+		lblNewCreator.setBounds(301, 102, 95, 14);
+		contentPane.add(lblNewCreator);
+
+		addGameButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				if (gameNameField.getText() == "" || gameNumbersSoldField.getText() == ""
+						|| gameReleaseYearField.getText() == "") {
+
+					gameNameField.setText("");
+					gameNumbersSoldField.setText("");
+					gameReleaseYearField.setText("");
+					notesField.setText("");
+				} 
+				{
+					String platform = (String) (gameList.getSelectedItem());
+					String name = (gameNameField.getText());
+					int numberSold = Integer.parseInt(gameNumbersSoldField.getText());
+					int releaseYear = Integer.parseInt(gameReleaseYearField.getText());
+					String creator = (String) (creatorsList.getSelectedItem());
+					String notes = notesField.getText();
+					GameFactory create = new GameFactory();
+					Game newGame = create.createGame(platform, name, releaseYear, numberSold, creator, notes);
+					games.add(newGame);
+					Creator newCreator = new Creator();
+					newCreator.setCreatorName((String) creatorsList.getSelectedItem());
+					newCreator.getGamesWorkedOn().add(newGame.getGameTitle());
+					// setting text labels to current entry
+					String thisPlatform = newGame.getPlatform();
+					String thisName = newGame.getGameTitle();
+					int thisNumberSold = newGame.getGameNumbersSold();
+					int thisRelease = newGame.getGameReleaseYear();
+					String thisCreator = newGame.getGameCreator();
+					String thisNotes = newGame.getGameNotes();
+					currentIndex = games.size() - 1;
+					arrayCount.setText(
+							"Array Size: " + games.size() + " - Current index: " + String.valueOf(currentIndex + 1));
+					getObjectDetails(games.get(currentIndex));
+					resultNameLabel.setText("Title: " + thisName);
+					resultPlatformLabel.setText("Platform: " + thisPlatform);
+					resultReleaseYear.setText("Release Year: " + String.valueOf(thisRelease));
+					resultNumberSold.setText("Number Sold:  " + Integer.toString((thisNumberSold)));
+					resultCreatorLabel.setText("Creator: " + String.valueOf(thisCreator));
+					resultNotesLabel.setText("Notes: \n" + String.valueOf(thisNotes));
+					gameNameField.setText("");
+					gameNumbersSoldField.setText("");
+					gameReleaseYearField.setText("");
+					notesField.setText("");
+				}
+				// Writing array to json format using Gson then writing to JSON file
+				String jsonFromArray = new Gson().toJson(games);
+				JSONService append = new JSONService();
+				append.AppendToJSON(jsonFromArray);
+			}
+		});
+	}
+
+	/**
+	 * Gets the object details.
+	 *
+	 * @param game
+	 *            the game
+	 * @return the object details
+	 */
+	public static void getObjectDetails(Game game) {
+		// setting the text from the games array to show in the UI
+		resultNameLabel.setText("Title: " + String.valueOf(game.getGameTitle()));
+		resultPlatformLabel.setText("Platform: " + String.valueOf(game.getPlatform()));
+		resultNumberSold.setText("Number Sold: " + Integer.toString(game.getGameNumbersSold()));
+		resultReleaseYear.setText("Release Year: " + String.valueOf(game.getGameReleaseYear()));
+		resultCreatorLabel.setText("Creator: " + String.valueOf(game.getGameCreator()));
+		resultNotesLabel.setText("Notes: \n" + String.valueOf(game.getGameNotes()));
+	}
+}
