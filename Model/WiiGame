@@ -1,0 +1,27 @@
+/*
+ * 
+ */
+package Model;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class WiiGame.
+ */
+public class WiiGame extends Game {
+
+	/**
+	 * Instantiates a new wii game.
+	 *
+	 * @param platform the platform
+	 * @param title the title
+	 * @param numbersSold the numbers sold
+	 * @param releaseYear the release year
+	 * @param creator the creator
+	 * @param notes the notes
+	 */
+	public WiiGame(String platform, String title, int numbersSold, int releaseYear, String creator, String notes) {
+		super("Wii", title, numbersSold, releaseYear, creator, notes);
+		// override the platform for correct formatting to Wii
+	}
+
+}
