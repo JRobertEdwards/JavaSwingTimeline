@@ -1,0 +1,27 @@
+/*
+ * 
+ */
+package Model;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class WiiUGame.
+ */
+public class WiiUGame extends Game {
+
+	/**
+	 * Instantiates a new wii U game.
+	 *
+	 * @param platform the platform
+	 * @param title the title
+	 * @param numbersSold the numbers sold
+	 * @param releaseYear the release year
+	 * @param creator the creator
+	 * @param notes the notes
+	 */
+	public WiiUGame(String platform, String title, int numbersSold, int releaseYear, String creator, String notes) {
+		super("WiiU", title, numbersSold, releaseYear, creator, notes);
+		// override the platform for correct formatting to WiiU
+	}
+
+}
