@@ -1,0 +1,28 @@
+/*
+ * 
+ */
+package Model;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class N64Game.
+ */
+public class N64Game extends Game {
+
+	/**
+	 * Instantiates a new n 64 game.
+	 *
+	 * @param platform the platform
+	 * @param title the title
+	 * @param numbersSold the numbers sold
+	 * @param releaseYear the release year
+	 * @param creator the creator
+	 * @param notes the notes
+	 */
+	public N64Game(String platform, String title, int numbersSold, int releaseYear, String creator,String notes) {
+		super("N64", title, numbersSold, releaseYear, creator, notes);
+		// override the platform for correct formatting to N64
+
+	}
+
+}
