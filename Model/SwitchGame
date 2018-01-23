@@ -1,0 +1,27 @@
+/*
+ * 
+ */
+package Model;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SwitchGame.
+ */
+public class SwitchGame extends Game {
+
+	/**
+	 * Instantiates a new switch game.
+	 *
+	 * @param platform the platform
+	 * @param title the title
+	 * @param gameNoSold the game no sold
+	 * @param releaseYear the release year
+	 * @param creator the creator
+	 * @param notes the notes
+	 */
+	public SwitchGame(String platform, String title, int gameNoSold, int releaseYear, String creator,String notes) {
+		super("Switch", title, gameNoSold, releaseYear, creator, notes);
+		// override the platform for correct formatting to Switch
+	}
+
+}
