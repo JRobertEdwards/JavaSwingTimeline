@@ -1,0 +1,57 @@
+/*
+ * 
+ */
+package Service;
+import Model.Game;
+import Model.GameCubeGame;
+import Model.N64Game;
+import Model.SnesGame;
+import Model.SwitchGame;
+import Model.WiiGame;
+import Model.WiiUGame;
+
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating Game objects.
+ */
+public class GameFactory {
+
+	/**
+	 * Creates a new Game object.
+	 *
+	 * @param platform the platform
+	 * @param title the title
+	 * @param releaseYear the release year
+	 * @param sold the sold
+	 * @param creator the creator
+	 * @param notes the notes
+	 * @return the game
+	 */
+	public Game createGame(String platform, String title, int releaseYear, int sold, String creator, String notes) {
+		// comparing the user entries with strings to create new games of that type
+		if (platform.equals(null)) {
+			return null;
+		}
+		if (platform.equals("")) {
+			System.out.println("You must enter a game platform");
+		}
+		if (platform.equals("N64") || platform.equals("n64")) {
+			return new N64Game(platform, title, sold, releaseYear, creator, notes);
+		}
+		if (platform.equals("SNES") || platform.equals("snes")) {
+			return new SnesGame("SNES", title,  sold, releaseYear, creator, notes);
+		}
+		if (platform.equals("gamecube") || platform.equals("Gamecube") || platform.equals("GameCube")) {
+			return new GameCubeGame("GameCube", title, sold, releaseYear, creator, notes);
+		}
+		if (platform.equals("Wii") || platform.equals("wii")) {
+			return new WiiGame("Wii", title, sold,  releaseYear, creator, notes);
+		}
+		if (platform.equals("WiiU") || platform.equals("Wii U")) {
+			return new WiiUGame("WiiU", title, sold, releaseYear, creator, notes);
+		}
+		if (platform.equals("Switch") || platform.equals("switch") || platform.equals("SWITCH"))
+			return new SwitchGame(platform, title, sold, releaseYear, creator, notes);
+		return null;
+	}
+}
