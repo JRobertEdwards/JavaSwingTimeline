@@ -1,0 +1,125 @@
+/*
+ * 
+ */
+package Service;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import Model.Game;
+import Service.GameFactory;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class JSONService.
+ */
+public class JSONService {
+
+	/**
+	 * Instantiates a new JSON service.
+	 */
+	public JSONService() {
+
+	}
+
+	/**
+	 * Read JSON.
+	 *
+	 * @return the string
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	public String ReadJSON() throws IOException {
+		// read json file in from local directory
+		String path = System.getProperty("user.dir");
+		FileReader fileReader = new FileReader(path + "\\src\\test.json");
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		// build string from file read
+		StringBuilder sb = new StringBuilder();
+		String line = bufferedReader.readLine();
+		while (line != null) {
+			sb.append(line);
+			sb.append(System.lineSeparator());
+			line = bufferedReader.readLine();
+		}
+		String everything = sb.toString();
+		bufferedReader.close();
+		return everything;
+	}
+	
+	/**
+	 * Map JSON.
+	 *
+	 * @param json the json
+	 * @return the array list
+	 */
+	public ArrayList<Game> MapJSON(String json) {
+		ArrayList<Game> games = new ArrayList<Game>();
+		GameFactory create = new GameFactory();
+		JSONObject obj = new JSONObject(json);
+		JSONArray arr = obj.getJSONArray("Games");
+		for (int i = 0; i < arr.length(); i++) {
+			JSONObject innerObject = arr.getJSONObject(i);
+			String platform = innerObject.getString("gamePlatform");
+			String name = innerObject.getString("gameTitle");
+			int releaseYear = innerObject.getInt("releaseYear");
+			int numberSold = innerObject.getInt("numberSold");
+			String creator = innerObject.getString("gameCreator");
+			String notes = innerObject.getString("gameNotes");
+
+			Game newGame = create.createGame(platform, name, releaseYear, numberSold, creator, notes);
+			games.add(newGame);
+		}
+		return games;
+	}
+
+	/**
+	 * Map tree.
+	 *
+	 * @param json the json
+	 * @return the array list
+	 */
+	public ArrayList<Game> MapTree(String json) {
+		ArrayList<Game> games = new ArrayList<Game>();
+		GameFactory create = new GameFactory();
+		JSONObject obj = new JSONObject(json);
+		JSONArray arr = obj.getJSONArray("Games");
+		for (int i = 0; i < arr.length(); i++) {
+			JSONObject innerObject = arr.getJSONObject(i);
+			String platform = innerObject.getString("gamePlatform");
+			String name = innerObject.getString("gameTitle");
+			int numberSold = innerObject.getInt("numberSold");
+			int releaseYear = innerObject.getInt("releaseYear");
+			String creator = innerObject.getString("gameCreator");
+			String notes = innerObject.getString("gameNotes");
+
+			Game newGame = create.createGame(platform, name, numberSold, releaseYear, creator, notes);
+			games.add(newGame);
+		}
+		return games;
+	}
+
+	/**
+	 * Append to JSON.
+	 *
+	 * @param currentFile the current file
+	 */
+	public void AppendToJSON(String currentFile) {
+		JSONObject obj = new JSONObject();
+		JSONArray gsonArray = new JSONArray(currentFile);
+		obj.put("Games", gsonArray);
+		String object = obj.toString();
+		String path = System.getProperty("user.dir");
+		try (FileWriter file = new FileWriter(path + "\\src\\test.json")) {
+			file.write(object);
+			file.flush();
+		} catch (IOException ej) {
+			ej.printStackTrace();
+		}
+
+	}
+}
