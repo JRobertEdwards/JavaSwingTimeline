@@ -1,0 +1,82 @@
+/*
+ * 
+ */
+package Model;
+import java.util.ArrayList;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Creator.
+ */
+public class Creator {
+
+	/** The name. */
+	String name;
+	
+	/** The games worked on. */
+	ArrayList<String> gamesWorkedOn;
+
+	/**
+	 * Instantiates a new creator.
+	 */
+	public Creator() {
+		name = "";
+		gamesWorkedOn = new ArrayList<String>();
+	}
+
+	/**
+	 * Instantiates a new creator.
+	 *
+	 * @param creatorName the creator name
+	 */
+	public Creator(String creatorName) {
+		name = creatorName;
+	}
+
+	/**
+	 * Instantiates a new creator.
+	 *
+	 * @param creatorName the creator name
+	 * @param gameTitle the game title
+	 */
+	public Creator(String creatorName, String gameTitle) {
+		name = creatorName;
+		gamesWorkedOn.add(gameTitle);
+	}
+
+	/**
+	 * Gets the creator name.
+	 *
+	 * @return the creator name
+	 */
+	public String getCreatorName() {
+		return name;
+	}
+
+	/**
+	 * Sets the creator name.
+	 *
+	 * @param creatorName the new creator name
+	 */
+	public void setCreatorName(String creatorName) {
+		this.name = creatorName;
+	}
+
+	/**
+	 * Gets the games worked on.
+	 *
+	 * @return the games worked on
+	 */
+	public ArrayList<String> getGamesWorkedOn() {
+		return gamesWorkedOn;
+	}
+
+	/**
+	 * Sets the games worked on.
+	 *
+	 * @param gamesWorkedOn the new games worked on
+	 */
+	public void setGamesWorkedOn(ArrayList<String> gamesWorkedOn) {
+		this.gamesWorkedOn = gamesWorkedOn;
+	}
+}
