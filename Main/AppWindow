@@ -1,0 +1,97 @@
+/*
+ * 
+ */
+package Main;
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+
+import Model.Game;
+import Service.JSONService;
+
+import View.FrameUI;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AppWindow.
+ */
+public class AppWindow {
+	
+	/** The games. */
+	public static ArrayList<Game> games = new ArrayList<Game>();
+	
+	/**
+	 * Load data.
+	 *
+	 * @return the array list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	private static ArrayList<Game> loadData() throws IOException {
+		//Loads in json file and maps it to the games arraylist
+		JSONService read = new JSONService();
+		String json = read.ReadJSON();
+		games = read.MapJSON(json);
+		return games;
+	}
+
+	/**
+	 * Creates the window.
+	 *
+	 * @param games the games
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	private static void createWindow(ArrayList<Game> games) throws IOException {
+		// Subclass ConverterUI to encapsulate window functionality
+		FrameUI window = new FrameUI("Timeline", games);
+		// GridUI window = new GridUI("Currency Converter");
+		// Tell Java we want to exit the application when the window closes
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//centering the window
+		window.setLocationRelativeTo(null);
+		// Make the new JFrame visible
+		window.setVisible(true);
+	}
+
+	/**
+	 * Sets the up UI font.
+	 *
+	 * @param f the new up UI font
+	 */
+	public static void setupUIFont(javax.swing.plaf.FontUIResource f) {
+		java.util.Enumeration<Object> keys = UIManager.getDefaults().keys();
+		while (keys.hasMoreElements()) {
+			Object key = keys.nextElement();
+			Object value = UIManager.get(key);
+			if (value != null && value instanceof javax.swing.plaf.FontUIResource) {
+				UIManager.put(key, f);
+			}
+		}
+	}
+
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
+	public static void main(String[] args) {
+		// Initialise Swing - Don't create the window (JFrame) directly - schedule a
+		// task to be executed later
+		// that will call createWindow to start the Swing GUI.
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+
+			public void run() {
+
+				try {
+					createWindow(loadData());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+}
