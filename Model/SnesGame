@@ -1,0 +1,27 @@
+/*
+ * 
+ */
+package Model;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SnesGame.
+ */
+public class SnesGame extends Game {
+
+	/**
+	 * Instantiates a new snes game.
+	 *
+	 * @param platform the platform
+	 * @param title the title
+	 * @param gameNoSold the game no sold
+	 * @param releaseYear the release year
+	 * @param creator the creator
+	 * @param notes the notes
+	 */
+	public SnesGame(String platform, String title, int gameNoSold, int releaseYear, String creator, String notes) {
+		super("SNES", title, gameNoSold, releaseYear, creator, notes);
+		// override the platform for correct formatting to SNES
+	}
+
+}
