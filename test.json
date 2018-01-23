@@ -1,0 +1,76 @@
+{
+	"Games": 
+	[
+		{
+			"numberSold": 800000,
+			"gameCreator": "Shigeru Miyamoto",
+			"gameNotes": "Yoshi, known as Mario & Yoshi in Europe and Australia, is a puzzle video game developed by Game Freak and published by Nintendo. The game was released for the Nintendo Entertainment System and Game Boy consoles.",
+			"gameTitle": "Yoshi",
+			"gamePlatform": "SNES",
+			"releaseYear": 1991
+		},
+
+		{
+			"numberSold": 200000,
+			"gameCreator": "Koichi Hayashida",
+			"gameNotes": "Super Mario Odyssey is a 3D platform-adventure video game developed and published by Nintendo for the Nintendo Switch. An installment in the Super Mario series, the story follows Mario and Cappy, a spirit that possesses Mario's hat and allows him to take control of other characters and objects.",
+			"gameTitle": "Super Mario Odyssey",
+			"gamePlatform": "Switch",
+			"releaseYear": 2017
+		},
+
+		{
+			"numberSold": 40000000,
+			"gameCreator": "Hiroshi Yamauchi",
+			"gameNotes": "Super Mario Bros. is a platform video game developed and published by Nintendo for the Nintendo Entertainment System home console.",
+			"gameTitle": "Super Mario Bros",
+			"gamePlatform": "SNES",
+			"releaseYear": 1985
+		},
+
+		{
+			"numberSold": 10000000,
+			"gameCreator": "Koji Kondo",
+			"gameNotes": "Super Mario Bros. 2 is a platform game developed and published by Nintendo for the Nintendo Entertainment System. The game was first released in North America in October 1988, and in the PAL region the following year.",
+			"gameTitle": "Super Mario Bros. 2",
+			"gamePlatform": "SNES",
+			"releaseYear": 1991
+		},
+
+		{
+			"numberSold": 20610000,
+			"gameCreator": "Shigefumi Hino",
+			"gameNotes": "Super Mario World is a 1990 side-scrolling platform video game developed and published by Nintendo for the Super Nintendo Entertainment System. ",
+			"gameTitle": "Super Mario World",
+			"gamePlatform": "SNES",
+			"releaseYear": 1990
+		},
+
+		{
+			"numberSold": 11910000,
+			"gameCreator": "Yoshiaki Koizumi",
+			"gameNotes": "Super Mario 64 is a 1996 platform video game developed and published by Nintendo for the Nintendo 64. It is the first Super Mario game to utilize three-dimensional graphics. Along with Pilotwings 64, it was one of the launch titles for the console.",
+			"gameTitle": "Super Mario 64",
+			"gamePlatform": "N64",
+			"releaseYear": 1996
+		},
+
+		{
+			"numberSold": 631000,
+			"gameCreator": "Takashi Tezuka",
+			"gameNotes": "Super Mario Sunshine is a 2002 platform video game developed by Nintendo Entertainment Analysis & Development and published by Nintendo for the GameCube.",
+			"gameTitle": "Super Mario Sunshine",
+			"gamePlatform": "GameCube",
+			"releaseYear": 2002
+		},
+
+		{
+			"numberSold": 500000,
+			"gameCreator": "Yoshiaki Koizumi",
+			"gameNotes": "This is a test",
+			"gameTitle": "test",
+			"gamePlatform": "WiiU",
+			"releaseYear": 400000
+		}
+	]
+}
